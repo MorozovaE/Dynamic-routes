@@ -11,7 +11,6 @@ interface IColorPickerProps {
 export const ColorPicker: React.FC<IColorPickerProps> = (props) => {
   return (
     <Sketch
-      style={{ marginLeft: 20 }}
       color={props.defaultValue}
       onChange={(color) => {
         props.onChangeColor(color.hexa);

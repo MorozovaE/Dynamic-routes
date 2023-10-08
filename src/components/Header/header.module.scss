@@ -1,0 +1,19 @@
+.headerPage {
+  display: flex;
+  flex-direction: column;
+  width: 325px;
+
+  h1 {
+    font-size: 30px;
+    margin: 0;
+    align-self: flex-start;
+    font-weight: normal;
+
+  }
+
+  span {
+    font-size: 21px;
+    align-self: flex-end;
+
+  }
+}

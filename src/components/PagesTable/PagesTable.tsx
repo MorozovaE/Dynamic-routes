@@ -49,7 +49,7 @@ export const PagesTable = () => {
       muiTableProps={{
         sx: {
           border: "1px solid rgba(81, 81, 81, 1)",
-          width: "500px",
+          // width: "500px",
         },
       }}
       muiTableHeadCellProps={{

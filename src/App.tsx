@@ -9,21 +9,19 @@ function App() {
   let pages = useSelector(pagesSelector);
 
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/" element={<Navigate to="/home" />} />
-        {pages.map((el, idx) => {
-          return (
-            <Route
-              key={idx}
-              path={`/${el.path}`}
-              element={<CustomPage data={el} />}
-            />
-          );
-        })}
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Navigate to="/home" />} />
+      {pages.map((el, idx) => {
+        return (
+          <Route
+            key={idx}
+            path={`/${el.path}`}
+            element={<CustomPage data={el} />}
+          />
+        );
+      })}
+    </Routes>
   );
 }
 

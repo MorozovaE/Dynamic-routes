@@ -1,9 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ICustomPage } from "../../interfaces";
 import { RootState } from "../store";
+import { previewPage } from "../../testData";
 
 const initialState = {
-  items: [] as ICustomPage[],
+  items: [previewPage] as ICustomPage[],
 };
 
 export const pageSlice = createSlice({

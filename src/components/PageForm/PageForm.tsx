@@ -28,8 +28,7 @@ export const PageForm = () => {
         <span>Path:</span>
         <input
           {...register("path", {
-            // \/?[A-Za-z0-9_.\-~]+(\/?[A-Za-z0-9_.\-~]+)*\/?
-            pattern: /^[\w-.~]+$/,
+            pattern: /\/?[A-Za-z0-9_.\-~]+(\/?[A-Za-z0-9_.\-~]+)*\/?/,
             minLength: {
               value: 2,
               message: "Not enought characters, min 2",
@@ -53,7 +52,7 @@ export const PageForm = () => {
               value: 2,
               message: "Not enought characters, min 2",
             },
-            max: 70,
+            max: 60,
             required: "Meta Title is required",
           })}
         />
@@ -68,7 +67,7 @@ export const PageForm = () => {
         <span>Meta Description</span>
         <input
           {...register("metaDescription", {
-            max: 140,
+            max: 155,
             required: "Meta Description is required",
           })}
         />

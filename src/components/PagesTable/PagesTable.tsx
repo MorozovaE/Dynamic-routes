@@ -1,12 +1,13 @@
 import React, { useMemo } from "react";
 import { MaterialReactTable, type MRT_ColumnDef } from "material-react-table";
-// import { data, type Person } from "./makeData";
 import { ICustomPage } from "../../interfaces";
 import { useSelector } from "react-redux";
 import { pagesSelector } from "../../store/features/pagesSlice";
+import { Link } from "react-router-dom";
 
 export const PagesTable = () => {
-  const data = useSelector(pagesSelector);
+  const pages = useSelector(pagesSelector);
+
   const columns = useMemo<MRT_ColumnDef<ICustomPage>[]>(
     () => [
       {
@@ -24,6 +25,11 @@ export const PagesTable = () => {
       {
         accessorKey: "path",
         header: "Path",
+        Cell: ({ cell }) => (
+          <Link to={"/" + cell.getValue<string>()}>
+            {cell.getValue<string>()}
+          </Link>
+        ),
       },
     ],
     []
@@ -32,7 +38,7 @@ export const PagesTable = () => {
   return (
     <MaterialReactTable
       columns={columns}
-      data={data}
+      data={pages}
       enableColumnActions={false}
       enableColumnFilters={false}
       enablePagination={false}
@@ -43,6 +49,7 @@ export const PagesTable = () => {
       muiTableProps={{
         sx: {
           border: "1px solid rgba(81, 81, 81, 1)",
+          width: "500px",
         },
       }}
       muiTableHeadCellProps={{
@@ -58,4 +65,3 @@ export const PagesTable = () => {
     />
   );
 };
-

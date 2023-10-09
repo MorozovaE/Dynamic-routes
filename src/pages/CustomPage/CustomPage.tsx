@@ -1,6 +1,7 @@
 import React from "react";
 import { ICustomPage } from "../../interfaces";
 import { Helmet } from "react-helmet";
+import style from "./customPage.module.scss";
 
 interface ICustomPageProps {
   data: ICustomPage;
@@ -8,7 +9,10 @@ interface ICustomPageProps {
 
 export const CustomPage = ({ data }: ICustomPageProps) => {
   return (
-    <div style={{ backgroundColor: data.backgroundColor }}>
+    <div
+      style={{ backgroundColor: data.backgroundColor }}
+      className={style.customPageContainer}
+    >
       <Helmet>
         <title>{data.metaTitle}</title>
         <meta name="title" content={data.metaTitle} />

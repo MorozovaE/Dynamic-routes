@@ -1,0 +1,12 @@
+.table {
+  margin-top: 50px;
+
+  .backgroundCell {
+    display: flex;
+    align-items: center;
+
+    >span {
+      margin-right: 7px;
+    }
+  }
+}

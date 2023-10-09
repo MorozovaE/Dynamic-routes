@@ -4,6 +4,7 @@ import { ICustomPage } from "../../interfaces";
 import { useSelector } from "react-redux";
 import { pagesSelector } from "../../store/features/pagesSlice";
 import { Link } from "react-router-dom";
+import style from "./pagesTable.module.scss";
 
 export const PagesTable = () => {
   const pages = useSelector(pagesSelector);
@@ -21,6 +22,19 @@ export const PagesTable = () => {
       {
         accessorKey: "backgroundColor",
         header: "Background Color",
+        Cell: ({ cell }) => (
+          <div className={style.backgroundCell}>
+            <span
+              style={{
+                backgroundColor: `${cell.getValue<string>()}`,
+                width: "25px",
+                height: "10px",
+                display: "block",
+              }}
+            ></span>
+            <span>{cell.getValue<string>()}</span>
+          </div>
+        ),
       },
       {
         accessorKey: "path",
@@ -36,32 +50,33 @@ export const PagesTable = () => {
   );
 
   return (
-    <MaterialReactTable
-      columns={columns}
-      data={pages}
-      enableColumnActions={false}
-      enableColumnFilters={false}
-      enablePagination={false}
-      enableSorting={false}
-      enableBottomToolbar={false}
-      enableTopToolbar={false}
-      muiTableBodyRowProps={{ hover: false }}
-      muiTableProps={{
-        sx: {
-          border: "1px solid rgba(81, 81, 81, 1)",
-          // width: "500px",
-        },
-      }}
-      muiTableHeadCellProps={{
-        sx: {
-          border: "1px solid rgba(81, 81, 81, 1)",
-        },
-      }}
-      muiTableBodyCellProps={{
-        sx: {
-          border: "1px solid rgba(81, 81, 81, 1)",
-        },
-      }}
-    />
+    <div className={style.table}>
+      <MaterialReactTable
+        columns={columns}
+        data={pages}
+        enableColumnActions={false}
+        enableColumnFilters={false}
+        enablePagination={false}
+        enableSorting={false}
+        enableBottomToolbar={false}
+        enableTopToolbar={false}
+        muiTableBodyRowProps={{ hover: false }}
+        muiTableProps={{
+          sx: {
+            border: "1px solid #fff",
+          },
+        }}
+        muiTableHeadCellProps={{
+          sx: {
+            border: "1px solid #E2E2E2",
+          },
+        }}
+        muiTableBodyCellProps={{
+          sx: {
+            border: "1px solid #E2E2E2",
+          },
+        }}
+      />
+    </div>
   );
 };

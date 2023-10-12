@@ -1,24 +1,26 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { ICustomPage } from "../../interfaces";
 import { useAppDispatch } from "../../store/store";
 import { addPage } from "../../store/features/pagesSlice";
-import { ColorPicker } from "../ColorPicker/ColorPicker";
-import { useState } from "react";
 import { ErrorMessage } from "@hookform/error-message";
 import styles from "./pageForm.module.scss";
+import { MuiColorInput, matchIsValidColor } from "mui-color-input";
 
 export const PageForm = () => {
-  const [color, setColor] = useState("#fff");
   const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
-  } = useForm<ICustomPage>();
+  } = useForm<ICustomPage>({
+    defaultValues: {
+      backgroundColor: "#ffffff",
+    },
+  });
 
   const onSubmit: SubmitHandler<ICustomPage> = (data) => {
-    data.backgroundColor = color;
     dispatch(addPage(data));
     reset();
   };
@@ -89,6 +91,7 @@ export const PageForm = () => {
             render={({ message }: any) => <span>{message}</span>}
           />
         </div>
+
         <div>
           <span>Text:</span>
           <input {...register("text", { required: "Text is required" })} />
@@ -98,15 +101,22 @@ export const PageForm = () => {
             render={({ message }: any) => <span>{message}</span>}
           />
         </div>
-        <input  type="submit" value="Create" />
+        <input type="submit" value="Create" />
       </div>
-
       <div className={styles.backgroundContainer}>
         <span>Background Color:</span>
-        <ColorPicker
-          color={color}
-          onChangeColor={setColor}
-          defaultValue={color}
+        <Controller
+          name="backgroundColor"
+          control={control}
+          rules={{ validate: matchIsValidColor }}
+          render={({ field, fieldState }) => (
+            <MuiColorInput
+              {...field}
+              format="hex8"
+              helperText={fieldState.invalid ? "Color is valid" : ""}
+              error={fieldState.invalid}
+            />
+          )}
         />
       </div>
     </form>

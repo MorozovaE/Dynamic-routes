@@ -13,7 +13,7 @@
         margin: 5px 0;
       }
 
-      input {
+      input:not(.backgroundColor) {
         background-color: #D9D9D9;
         border: 0;
         padding: 10px;
@@ -34,6 +34,10 @@
           color: red;
         }
       }
+    }
+
+    .backgroundColor {
+      background-color: white;
     }
 
     input[type=submit] {

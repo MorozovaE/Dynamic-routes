@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit";
 import { ICustomPage } from "../../interfaces";
 import { RootState } from "../store";
 import { previewPage } from "../../testData";
@@ -18,6 +18,7 @@ export const pageSlice = createSlice({
 });
 export const { addPage } = pageSlice.actions;
 
-export const pagesSelector = (state: RootState) => state.pages.items;
+const pagesState = (state: RootState) => state.pages;
+export const selectPages = createSelector(pagesState, (s) => s.items);
 
 export default pageSlice.reducer;

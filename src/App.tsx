@@ -2,11 +2,11 @@ import "./App.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
 import { useSelector } from "react-redux";
-import { pagesSelector } from "./store/features/pagesSlice";
+import { selectPages } from "./store/features/pagesSlice";
 import { CustomPage } from "./pages/CustomPage/CustomPage";
 
 function App() {
-  let pages = useSelector(pagesSelector);
+  let pages = useSelector(selectPages);
 
   return (
     <Routes>

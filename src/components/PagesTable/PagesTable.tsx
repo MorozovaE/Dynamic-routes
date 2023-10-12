@@ -2,12 +2,12 @@ import React, { useMemo } from "react";
 import { MaterialReactTable, type MRT_ColumnDef } from "material-react-table";
 import { ICustomPage } from "../../interfaces";
 import { useSelector } from "react-redux";
-import { pagesSelector } from "../../store/features/pagesSlice";
+import { selectPages } from "../../store/features/pagesSlice";
 import { Link } from "react-router-dom";
 import style from "./pagesTable.module.scss";
 
 export const PagesTable = () => {
-  const pages = useSelector(pagesSelector);
+  const pages = useSelector(selectPages);
 
   const columns = useMemo<MRT_ColumnDef<ICustomPage>[]>(
     () => [
